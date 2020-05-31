@@ -9,6 +9,7 @@ import {
     Param,
     Headers,
     UseFilters,
+    ParseIntPipe,
     HttpException,
     HttpStatus,
   } from '@nestjs/common';
@@ -42,8 +43,11 @@ import {
   
     // 更新
     @Patch(':id')
-    update(@Param() { id }, @Body() { message }): string {
-      return this.exceptionService.update(id, message);
+    // 有时，我们希望参数的类型为数字，则可以通过管道进行转换
+    // !现nest自带部分管道
+    update(@Param('id', new ParseIntPipe()) id, @Body() { message }): string {
+        console.log(typeof id)
+        return this.exceptionService.update(id, message);
     }
   
     // 删除
