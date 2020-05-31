@@ -18,7 +18,7 @@ import {
   import { HttpExceptionFilter } from '../../common/filters/http-exception.filter';
   
 
-  @UseFilters(new HttpExceptionFilter())
+//   @UseFilters(new HttpExceptionFilter())
   @Controller('/exception')
   export class ExceptionController {
     constructor(private readonly exceptionService: ExceptionService) {}
